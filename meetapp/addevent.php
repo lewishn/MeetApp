@@ -12,8 +12,8 @@
 		{
 			$key = md5(uniqid());
 			$key = substr($key,0,6);
-			$result=mysqli_query($db,"SELECT uid FROM event WHERE uid='$key'");
-			$count = mysqli_num_rows($result);
+			$result = pg_query($db,"SELECT uid FROM event WHERE uid='$key'");
+			$count = pg_num_rows($result);
 			
 			if ($count == 0) break;
 		}
@@ -39,7 +39,7 @@
 		
 		$getEvent = "SELECT event,name FROM user WHERE uid ='$uid'";
 		$res = $db->query($getEvent);
-		$row = mysqli_fetch_row($res);
+		$row = pg_fetch_row($res);
 		$eventArray = $row[0];
 		$name = $row[1];
 		error_log($name);

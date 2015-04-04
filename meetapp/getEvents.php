@@ -28,8 +28,8 @@
 		*/
 		
 		$getEvent = "SELECT event FROM user WHERE uid ='$uid'";
-		$res = $db->query($getEvent);
-		$row = mysqli_fetch_row($res);
+		$res = pg_query($getEvent);
+		$row = pg_fetch_row($res);
 		$eventArray = $row[0];
 		$eventArray = unserialize($eventArray);
 		
@@ -42,8 +42,8 @@
 			$temp = array();
 			// query info for each event
 			$getData = "SELECT name, duration, owner, finalize FROM event WHERE uid = '$eid'";
-			$res = $db -> query($getData);
-			while ($row = mysqli_fetch_row($res))
+			$res = pg_query($getData);
+			while ($row = pg_fetch_row($res))
 			{
 				array_push($temp,$row[0],$row[1],$row[2],$row[3]);
 				$json[] = array($eid => $temp);
