@@ -7,6 +7,7 @@
 		
 		<link rel = "stylesheet" href="css/bootstrap-flatly.css" media="screen">
 		<link rel="stylesheet" href="css/bootstrap-flatly-min.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 		<script src = "js/jquery-1.10.2.js"></script>
 		<script src = "js/bootstrap.min.js"></script>
 		
@@ -19,8 +20,10 @@
 		<script src="bootstrap3-editable/js/bootstrap-editable.js"></script>
 		
 		<link rel="stylesheet" href="custom.css">
-		
+		<script src = "getuser.js"></script>
 		<script src = "option.js"></script>
+		<script src = "create.js"></script>
+		<script src = "js/jquery.cookie.js"></script>
 	</head>
 	
 	<body>
@@ -36,14 +39,14 @@
 				<div class="navbar-collapse collapse" id="navbar-main">
 					<ul class="nav navbar-nav navbar-right">
 						<li class ="dropdown">
-							<a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-expanded="false">Hello, Stranger <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-expanded="false">Hello, <span id = "name">Stranger </span><span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								
-								<li class = "text-right"><a href="#">Manage Events</a></li>
+								<li class = "text-right"><a href="manage.php">Manage Events</a></li>
 								<li class = "text-right"><a href="#">Settings</a></li>
 								<li class = "text-right"><a href="#">Something else here</a></li>
 								<li class="divider"></li>
-								<li class = "text-right"><a href="#">Sign out</a></li>
+								<li class = "text-right"><a href="logout.php">Sign out</a></li>
 								
 							</ul>
 						</li>
@@ -71,7 +74,7 @@
 						<p class="lead"><a href = "#" id = "duration" class = "editable editable-click editable-unsaved">Duration: 2 hours</a></p>
 					</div>
 					
-					<div class = "col-lg-1">
+					<div class = "col-lg-2 text-right">
 						<h1><button class= "btn btn-danger btn-lg" id = "create">Create !</button>
 						</h1>
 					</div>
@@ -85,7 +88,8 @@
 					<div class = "col-lg-12">
 						<div class="alert alert-dismissible alert-info">
 							<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>Heads up!</strong> You can choose the timings for your event using options below :)
+							<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+							<strong>Heads up!</strong> You can choose the timings for your event using <strong>Options</strong> below :)
 						</div></div>
 				</div>
 				<div class="row">
@@ -113,7 +117,7 @@
 								<div class = "form-group">	
 									<div class = "col-lg-3">
 										<h4>Options</h4>
-										</div>
+									</div>
 									
 									
 									<div class = "col-lg-5">
@@ -243,17 +247,32 @@
 									
 								</div>
 								
-								
-							</div>
-							<!--
 								<div class = "form-group">
-								<div class = "col-lg-10 col-lg-offset-2">
-								<textarea class="form-control" row = "3" id = "highlight">
-								</textarea>
+									<div class = "col-lg-10 col-lg-offset-2">
+										<textarea class="form-control" row = "3" id = "highlight">
+										</textarea>
+									</div>
 								</div>
-								</div>
-							-->
+							</div>
 							
+							
+							
+							
+						</div>
+					</div>
+					
+					<div class = "col-lg-5 col-lg-offset-2">
+						<div class = "bs-component">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title">Comments</h3>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+  <input type="text" class="form-control" id="comment">
+</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -261,4 +280,4 @@
 		</div>
 		
 		
-	</body>																																												
+	</body>																																													

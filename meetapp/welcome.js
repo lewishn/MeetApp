@@ -13,7 +13,7 @@ function init()
 
 function joinbutton()
 {
-	$("#Join").click(function() {
+	$("#ChangeJoin").click(function() {
 		$("#form-signup").show();
 		$("#form-signin").hide();
 		
@@ -22,7 +22,7 @@ function joinbutton()
 
 function loginbutton()
 {
-	$("#Login").click(function() {
+	$("#ChangeLogin").click(function() {
 		$("#form-signin").show();
 		$("#form-signup").hide();
 		
@@ -31,10 +31,4 @@ function loginbutton()
 
 function formredirect()
 {
-	$("form").submit(function()
-	{
-		//alert("SUBMIT");
-		window.location.assign("Create.html");
-		return false;
-	});
 }
