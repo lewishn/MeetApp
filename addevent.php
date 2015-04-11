@@ -37,7 +37,7 @@
 		*/
 		$uid = $input["owner"];
 		
-		$getEvent = "SELECT event,name FROM user WHERE uid ='$uid'";
+		$getEvent = "SELECT event,name FROM users WHERE uid ='$uid'";
 		$res = $db->query($getEvent);
 		$row = pg_fetch_row($res);
 		$eventArray = $row[0];
@@ -56,7 +56,7 @@
 		
 		$test = unserialize($eventArray);
 		
-		$addEvent = $db -> prepare("UPDATE user SET event=? WHERE uid =?");
+		$addEvent = $db -> prepare("UPDATE users SET event=? WHERE uid =?");
 		$addEvent -> bind_param("si", $eventArray, $input["owner"]);
 		$addEvent -> execute();
 		$addEvent -> close();

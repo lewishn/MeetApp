@@ -27,7 +27,7 @@
 		$row = $result -> fetch_assoc();
 		*/
 		
-		$getEvent = "SELECT event FROM user WHERE uid ='$uid'";
+		$getEvent = "SELECT event FROM users WHERE uid ='$uid'";
 		$res = pg_query($getEvent);
 		$row = pg_fetch_row($res);
 		$eventArray = $row[0];
