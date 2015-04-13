@@ -36,7 +36,7 @@ $(function()
 		console.log(passtoPHP);
 		
 		// ajax sending data to server
-		alert("?");
+		//alert("?");
 		$.get('addevent.php', {data: passtoPHP}, function(data)
 		{
 			$.cookie('ekey',data);

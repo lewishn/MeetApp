@@ -21,12 +21,12 @@ $(document).ready(function()
 					{
 						//or
 						console.log(data);
-						alert("SUCCESS LOGIN");
+						//alert("SUCCESS LOGIN");
 						window.location.href = "manage.php";
 					}				
 					else
 					{
-						alert("FAIL LOGIN");
+						//alert("FAIL LOGIN");
 						$("#login").val("Login");
 						$("#error").html("Error: Invalid email or password. ");
 					}

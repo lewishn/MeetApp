@@ -23,23 +23,37 @@ $(function() {
 		getUserInfo();
 		console.log("I CAN SAFELY START NOW!");
 		
-		customlayout();
-		editable();
-		getVar();
+		if (eventInfo["finalize"])
+		{
+			$("#userMessage").hide();
+			$("#finalize").hide();
+			$("#submit").hide();
+			$("#optionbox").hide();
+			$("#commentbox").hide();
+			$("#infoMessage").html("Your event will happen on : " + eventInfo["finalize"]);
+			$("#optionMessage").addClass('text-center');
+		}
+		else
+		{
+			customlayout();
+			editable();
+			getVar();
+			
+			//option setup
+			initOption();
+			clickHourlyButton();
+			clickDailyButton();
+			handleClickUpdate();
 		
-		//option setup
-		initOption();
-		clickHourlyButton();
-		clickDailyButton();
-		handleClickUpdate();
+			// normal setup
 		
-		// normal setup
+			// valid grid
+			getValidCell();
 		
-		// valid grid
-		getValidCell();
+			drawCorrectGrid();
+			drawFace();
+		}
 		
-		drawCorrectGrid();
-		drawFace();
 	});
 		
 });
@@ -307,7 +321,7 @@ function drawHourlyTable()
 			
 			// get info about range of time
 			
-			
+			console.log("DRAW GRID?");
 			console.log(startTime," -> ", endTime);
 			console.log(startDate," -> ", endDate);
 			

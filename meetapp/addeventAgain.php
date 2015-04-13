@@ -46,8 +46,8 @@
 		$deleteEvent = "DELETE FROM event WHERE eid ='$key'";
 		$res = $db->query($deleteEvent);
 		
-		$addData = $db -> prepare("INSERT INTO event (eid,name,duration,owner,ownerid,mode,startD,endD,startT,endT,displayDay) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-		$addData -> bind_param("ssssisssiis",$key,$input["name"],$input["duration"],$name,$uid,$input["mode"], $input["startD"], $input["endD"], $input["startT"], $input["endT"], $displayDayArray);
+		$addData = $db -> prepare("INSERT INTO event (eid,name,duration,owner,ownerid,mode,startD,endD,startT,endT,displayDay,finalize) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+		$addData -> bind_param("ssssisssiiss",$key,$input["name"],$input["duration"],$name,$uid,$input["mode"], $input["startD"], $input["endD"], $input["startT"], $input["endT"], $displayDayArray, $input["finalize"]);
 		$addData -> execute();
 		$addData -> close();
 		

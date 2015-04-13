@@ -25,12 +25,12 @@ $(document).ready(function()
 					{
 						//or
 						console.log(data);
-						alert("Success");
+						//alert("Success");
 						window.location.href = "manage.php";
 					}
 					else
 					{
-						console.log("FAIL REGISTER");
+						//console.log("FAIL REGISTER");
 						$("#join").val("Join");
 						$("#error").html("Error: Invalid email or password. ");
 					}
