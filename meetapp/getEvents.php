@@ -41,7 +41,7 @@
 			error_log($eid);
 			$temp = array();
 			// query info for each event
-			$getData = "SELECT name, duration, owner, finalize FROM event WHERE uid = '$eid'";
+			$getData = "SELECT name, duration, owner, finalize FROM event WHERE eid = '$eid'";
 			$res = $db -> query($getData);
 			while ($row = mysqli_fetch_row($res))
 			{

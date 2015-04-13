@@ -1,0 +1,15 @@
+Folder,Files,LOC,SLOC-P,SLOC-L,MVG,BLOC,C&SLOC,CLOC,CWORD,HCLOC,HCWORD
+Total,61,80152,57729,39544,9319,11460,603,10963,68342,204,817
+C:\wamp\www\meetapp,61,80152,57729,39544,9319,11460,603,10963,68342,204,817
+C:\wamp\www\meetapp\bootstrap3-editable,2,6814,3817,3376,583,739,55,2258,8926,17,106
+C:\wamp\www\meetapp\bootstrap3-editable\js,2,6814,3817,3376,583,739,55,2258,8926,17,106
+C:\wamp\www\meetapp\inputs-ext,8,11819,8600,7671,1398,1345,70,1874,11271,114,295
+C:\wamp\www\meetapp\inputs-ext\address,1,170,67,47,9,15,0,88,241,23,50
+C:\wamp\www\meetapp\inputs-ext\typeaheadjs,2,1225,1161,858,164,9,0,55,137,35,93
+C:\wamp\www\meetapp\inputs-ext\typeaheadjs\lib,1,1139,1132,835,161,2,0,5,17,5,17
+C:\wamp\www\meetapp\inputs-ext\wysihtml5,5,10424,7372,6766,1225,1321,70,1731,10893,56,152
+C:\wamp\www\meetapp\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2,4,10285,7312,6720,1218,1302,69,1671,10713,27,73
+C:\wamp\www\meetapp\jquery-ui,4,26934,19703,13813,3402,4027,219,3204,23328,21,156
+C:\wamp\www\meetapp\jquery-ui\external,1,9790,6649,4323,1485,1545,13,1596,11397,13,38
+C:\wamp\www\meetapp\jquery-ui\external\jquery,1,9790,6649,4323,1485,1545,13,1596,11397,13,38
+C:\wamp\www\meetapp\js,7,12472,8485,5166,1781,2155,42,1832,12326,48,201

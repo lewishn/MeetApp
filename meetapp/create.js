@@ -26,13 +26,10 @@ $(function()
 			responseArray.push(id);
 		}
 		
-		var responseJSON = {};
-		responseJSON[uid.toString()] = responseArray;
-		
+		var responseJSON = responseArray;
 		json.response = responseJSON;
 		
-		var comment = {};
-		comment[uid.toString()] = $("#comment").val();
+		var comment = $("#comment").val();
 		json.comment = comment;
 		
 		var passtoPHP = JSON.stringify(json);
