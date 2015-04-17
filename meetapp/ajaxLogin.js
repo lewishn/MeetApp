@@ -56,6 +56,7 @@ function signinCallback(authResult) {
 	}
 }
 
+//Google Login
 function doGoogleLogin() {
 	var user_id, user_name, user_image_url;
 
@@ -64,9 +65,8 @@ function doGoogleLogin() {
 		    'userId': 'me'
 		  });
 		  request.execute(function (resp){
-		    console.log(resp);
 		    if(resp.id){
-		      user_id = resp.id;
+		      user_id = "google" + resp.id;
 		    }
 		    if(resp.displayName){
 		      user_name = resp.displayName;
@@ -78,5 +78,58 @@ function doGoogleLogin() {
 	});
 
 	// do ajax whatever here.
+
+}
+
+/**************************FACEBOOK****************************/
+window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '1603365533241044',
+		//status : true,
+		xfbml      : true,
+		version    : 'v2.3'
+	});
+};
+
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+function checkLoginState() {
+	FB.getLoginStatus(function(response) {
+  		statusChangeCallback(response);
+	});
+}
+
+function statusChangeCallback(response) {	
+	if (response.status === 'connected') {
+		// connected
+		var user_id, user_name, user_image_url;
+		FB.api("/me", function (apiResponse) {
+			if (apiResponse && ! apiResponse.error) {
+				user_id = apiResponse.id;
+				user_name = apiResponse.name;
+			}
+		});
+
+		FB.api("/me/picture", function (apiResponse) {
+			if (apiResponse && ! apiResponse.error) {
+				user_image_url = apiResponse.data.url;
+			}
+		});
+
+		//do whatever AJAX you want here (should be exactly the same as google version)
+		//Can just call the function 
 	
+	} else if (response.status === 'not_authorized') {
+	// The person is logged into Facebook, but not MeetApp.
+		
+	} else {
+		//Not logged into Facebook
+		console.log("Not logged in to facebook");
+	}
 }
