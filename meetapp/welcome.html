@@ -1,95 +1,101 @@
 <html lang = "en">
-	<head>
-		<meta charset = "utf-8">
-		<title>Login Page</title>
-		<meta name="viewport" content="width=device-width,initial-scale = 1">
-		<meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-		
-		<link rel = "stylesheet" href="css/bootstrap-flatly.css" media="screen">
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
-		<script src = "js/jquery-1.10.2.js"></script>
-		<script src = "welcome.js"></script>
-		<script src = "ajaxLogin.js"></script>
-		<script src = "ajaxRegister.js"></script>
-	</head>
+<head>
+	<meta charset = "utf-8">
+	<title>Login Page</title>
+	<meta name="viewport" content="width=device-width,initial-scale = 1">
+	<meta http-equiv = "X-UA-Compatible" content = "IE=edge">
 	
-	<body>
-		
-		<div class = "container">
-			<div class = "page-header">
-				<div class = "row text-center">
-					<h1>MeetApp</h1>
-					<p class = "lead">Create events, Invite friends</p>
-				</div>
+	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+	<link rel = "stylesheet" href="css/bootstrap-flatly.css" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+	<script src = "js/jquery-1.10.2.js"></script>
+	<script src = "welcome.js"></script>
+	<script src = "ajaxLogin.js"></script>
+	<script src = "ajaxRegister.js"></script>
+</head>
+	
+<body>
+	<div class = "container">
+		<div class = "page-header">
+			<div class = "row text-center">
+				<h1>MeetApp</h1>
+				<p class = "lead">Create events, Invite friends</p>
 			</div>
-			
-			<div class = "bs-docs-section">
-				<div class = "row">
-					<div class = "col-lg-4 col-lg-offset-4">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<br />
-								<form class = "form-horizontal" id = "form-signup">
-									<fieldset>
-										<div class="form-group">
-											<div class="col-lg-12">
-												<input type="text" class="form-control" id="joinname" placeholder="Name">
-											</div>
+		</div>
+		
+		<div class = "bs-docs-section">
+			<div class = "row">
+				<div class = "col-lg-4 col-lg-offset-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<br />
+							<form class = "form-horizontal" id = "form-signup">
+								<fieldset>
+									<div class="form-group">
+										<div class="col-lg-12">
+											<input type="text" class="form-control" id="joinname" placeholder="Name">
 										</div>
-										<div class="form-group">
-											<div class="col-lg-12">
-												<input type="text" class="form-control" id="joinemail" placeholder="Email">
-											</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-12">
+											<input type="text" class="form-control" id="joinemail" placeholder="Email">
 										</div>
-										<div class="form-group">
-											<div class="col-lg-12">
-												<input type="password" class="form-control" id="joinpwd" placeholder="Password">
-											</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-12">
+											<input type="password" class="form-control" id="joinpwd" placeholder="Password">
 										</div>
-										<div class = "form-group">
-											<div class = "col-lg-11 col-lg-offset-3">
-											<button  type="submit" class = "btn  btn-success" id = "join"><b>&nbsp;Join&nbsp;</b></button>
-												<label class = "">&nbsp;&nbsp; or </label>
-												<label><a  id = "ChangeLogin" style="text-decoration:none;cursor:pointer"><span style = "color:white">&nbsp;Login </span></a></label>
-											</div>
-											
+									</div>
+									<div class = "form-group">
+										<div class = "col-lg-11 col-lg-offset-3">
+										<button  type="submit" class = "btn  btn-success" id = "join"><b>&nbsp;Join&nbsp;</b></button>
+											<label class = "">&nbsp;&nbsp; or </label>
+											<label><a  id = "ChangeLogin" style="text-decoration:none;cursor:pointer"><span style = "color:white">&nbsp;Login </span></a></label>
 										</div>
-									</fieldset>
-								</form>
-								<form class = "form-horizontal" id = "form-signin">
-									<fieldset>
-										<div class="form-group">
-											<div class="col-lg-12">
-												<input type="text" class="form-control" id="loginemail" placeholder="Email">
-											</div>
+										
+									</div>
+								</fieldset>
+							</form>
+							<form class = "form-horizontal" id = "form-signin">
+								<fieldset>
+									<div class="form-group">
+										<div class="col-lg-12">
+											<input type="text" class="form-control" id="loginemail" placeholder="Email">
 										</div>
-										<div class="form-group">
-											<div class="col-lg-12">
-												<input type="password" class="form-control" id="loginpwd" placeholder="Password">
-											</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-12">
+											<input type="password" class="form-control" id="loginpwd" placeholder="Password">
 										</div>
-										<div class = "form-group">
-											<div class = "col-lg-11 col-lg-offset-3">
-												<button type="submit" class = "btn  btn-success" id = "login"><b>&nbsp;Login&nbsp;</b></button>
-												<label class = "">&nbsp;&nbsp; or </label>
-												<label><a id = "ChangeJoin" style="text-decoration:none;cursor:pointer"><span style = "color:white">&nbsp;Join </span></a></label>
-											</div>
-											
+									</div>
+									<div class = "form-group">
+										<div class = "col-lg-11 col-lg-offset-3">
+											<button type="submit" class = "btn  btn-success" id = "login"><b>&nbsp;Login&nbsp;</b></button>
+											<label class = "">&nbsp;&nbsp; or </label>
+											<label><a id = "ChangeJoin" style="text-decoration:none;cursor:pointer"><span style = "color:white">&nbsp;Join </span></a></label>
 										</div>
-									</fieldset>
-								</form>
-								<div class = "row">
-								<div class = "col-lg-12" id = "error">
-								</div>
+										
+									</div>
+								</fieldset>
+							</form>
+							<div class = "row">
+								<div class = "col-lg-12" id = "error"></div>
 							</div>
-							</div>
-							
-						</div>
+							<div>- OR -</div>
+								<span id="signinButton">
+							      <span
+							        class="g-signin"
+							        data-callback="signinCallback" 
+							        data-clientid="744986710920-n6amsimac42aqbv5v9v2r821j6123cff.apps.googleusercontent.com"
+							        data-cookiepolicy="single_host_origin"
+							        data-scope="https://www.googleapis.com/auth/plus.login">
+							      </span>
+									</span>
+						</div><!-- panel heading -->
 					</div>
 				</div>
 			</div>
-			
-			
-			
-		</body>		
-	</html>	
+		</div>	
+	</div>	
+</body>
+</html>	
