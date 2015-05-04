@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	ob_start();
 	if (!empty($_SESSION['login_user']))
 	{
 		echo "yes";

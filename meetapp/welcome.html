@@ -1,34 +1,51 @@
 <html lang = "en">
 <head>
 	<meta charset = "utf-8">
-	<title>Login Page</title>
+	<title>MeetApp - Easy Online Event Scheduling</title>
 	<meta name="viewport" content="width=device-width,initial-scale = 1">
 	<meta http-equiv = "X-UA-Compatible" content = "IE=edge">
 	
-	<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<!--<script src="https://apis.google.com/js/client:platform.js" async defer></script>-->
 	<link rel = "stylesheet" href="css/bootstrap-flatly.css" media="screen">
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 	<script src = "js/jquery-1.10.2.js"></script>
 	<script src = "welcome.js"></script>
 	<script src = "ajaxLogin.js"></script>
 	<script src = "ajaxRegister.js"></script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38928749-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </head>
 	
 <body>
 	<div class = "container">
-		<div class = "page-header">
+		<div class = "page-header" style = "margin: 12px 0px">
 			<div class = "row text-center">
 				<h1>MeetApp</h1>
 				<p class = "lead">Create events, Invite friends</p>
+				<p><a href="demoLogin.php" class="btn btn-info">Try Now ! (Anonymous)</a></p>
+				- OR -
 			</div>
+			
 		</div>
 		
 		<div class = "bs-docs-section">
+			
 			<div class = "row">
-				<div class = "col-lg-4 col-lg-offset-4">
+				<div class = "col-sm-4 col-sm-offset-4">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
+						
 							<br />
+							
+							
 							<form class = "form-horizontal" id = "form-signup">
 								<fieldset>
 									<div class="form-group">
@@ -81,7 +98,19 @@
 							<div class = "row">
 								<div class = "col-lg-12" id = "error"></div>
 							</div>
-							<div>- OR -</div>
+							<hr />
+							<div class = "row">
+								<div class = "col-lg-12 text-center">
+									Forgot my password 
+									
+									<a href="forget.html" class="btn btn-info btn-xs">^_^</a>
+								</div>
+							</div>
+							
+							
+							
+							
+							<!--	
 								<div id="signinButton">
 								    <span
 								        class="g-signin"
@@ -91,11 +120,16 @@
 								        data-scope="https://www.googleapis.com/auth/plus.login">
 								    </span>
 								</div>
+								
 								<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+							-->
 						</div><!-- panel heading -->
 					</div>
 				</div>
-			</div>
+				
+				
+			
+			
 		</div>	
 	</div>	
 </body>

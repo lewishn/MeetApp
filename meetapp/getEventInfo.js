@@ -10,7 +10,7 @@ function getEventInfo()
 	console.log("START GET EVENT INFO");
 	// get event general info
 	eid = location.search.split("e=")[1];
-	//alert(eid);
+	
 	$.get("getEventInfo.php", {data: eid}, function(data)
 	{
 		data = JSON.parse(data);

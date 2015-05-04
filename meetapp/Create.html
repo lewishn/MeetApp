@@ -24,6 +24,16 @@
 		<script src = "option.js"></script>
 		<script src = "create.js"></script>
 		<script src = "js/jquery.cookie.js"></script>
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38928749-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	</head>
 	
 	<body>
@@ -33,7 +43,13 @@
 			<div class="container">
 				
 				<div class="navbar-header">
-					<a href="#" class="navbar-brand">MeetApp</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+					<a href="index.php" class="navbar-brand">MeetApp</a>
 				</div>
 				
 				<div class="navbar-collapse collapse" id="navbar-main">
@@ -43,8 +59,8 @@
 							<ul class="dropdown-menu" role="menu">
 								
 								<li class = "text-right"><a href="manage.php">Manage Events</a></li>
-								<li class = "text-right"><a href="#">Settings</a></li>
-								<li class = "text-right"><a href="#">Something else here</a></li>
+								<li class = "text-right"><a href="setting.php">Settings</a></li>
+
 								<li class="divider"></li>
 								<li class = "text-right"><a href="logout.php">Sign out</a></li>
 								
@@ -71,8 +87,8 @@
 			<div class="page-header">
 				<div class="row">
 					<div class="col-lg-10">
-						<h1><a href = "#" id = "title" class = "editable editable-click editable-unsaved">Front-end Meetup</a></h1>
-						<p class="lead"><a href = "#" id = "duration" class = "editable editable-click editable-unsaved">Duration: 2 hours</a></p>
+						<h1><a href = "#" id = "title" class = "editable editable-click editable-unsaved">Untitled</a></h1>
+						<p class="lead"><a href = "#" id = "duration" class = "editable editable-click editable-unsaved">Duration: Eternal !</a></p>
 					</div>
 					
 					<div class = "col-lg-2 text-right">

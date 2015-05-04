@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+	
 	$('#login').click(function()
 	{
 		$("#error").html('');
@@ -34,7 +35,7 @@ $(document).ready(function()
 			})
 		}
 		else
-			$("#error").html("Error: Email, and Password cannot be empty");
+			$("#error").html("Error: Info can't be empty");
 		return false;
 	});
 });
@@ -42,6 +43,7 @@ $(document).ready(function()
 
 
 // Note, these have to be outside here or it won't work.
+/*
 (function() {
 	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
 	po.src = 'https://apis.google.com/js/client:plusone.js?onload=signinCallback';
@@ -78,13 +80,17 @@ function doGoogleLogin() {
 	});
 
 	// do ajax whatever here.
+	console.log("GOOGLE LOGIN");
+	console.log(user_id);
+	console.log(user_name);
+	console.log(user_image_url);
 
 }
-
+*/
 /**************************FACEBOOK****************************/
 window.fbAsyncInit = function() {
 	FB.init({
-		appId      : '1603365533241044',
+		appId      : '1381181512206767',
 		//status : true,
 		xfbml      : true,
 		version    : 'v2.3'
@@ -123,7 +129,43 @@ function statusChangeCallback(response) {
 		});
 
 		//do whatever AJAX you want here (should be exactly the same as google version)
-		//Can just call the function 
+		//Can just call the function
+		var name = user_name;
+		var email = user_id;
+		var dataString = "name=" + name+ "&email=" + email;
+		
+		console.log("FACEBOOK LOGIN");
+		console.log(user_name);
+		console.log(user_id);
+		if($.trim(email).length>0 && $.trim(name).length > 0)
+		{
+			$.ajax({
+				type: "POST",
+				url: "facebookLogin.php",
+				data: dataString,
+				cache: false,
+				beforeSend: function(){ $("#join").val('Connecting...');},
+				success: function(data){
+					console.log(data);
+					if (data)
+					{
+						//or
+						console.log(data);
+						//alert("Success");
+						window.location.href = "manage.php";
+					}
+					else
+					{
+						//console.log("FAIL REGISTER");
+						$("#join").val("Join");
+						$("#error").html("Error: Invalid email or password. ");
+					}
+				}
+			})
+		}
+		else
+		 $("#error").html("Error: Name, Email, and Password cannot be empty");
+		return false;
 	
 	} else if (response.status === 'not_authorized') {
 	// The person is logged into Facebook, but not MeetApp.

@@ -32,9 +32,18 @@ $(function() {
 			$("#commentbox").hide();
 			$("#infoMessage").html("Your event will happen on : " + eventInfo["finalize"]);
 			$("#optionMessage").addClass('text-center');
+			$("#title").html(eventInfo["name"]);
+			$("#duration").html(eventInfo["desc"]);
 		}
 		else
 		{
+			// null event, invalid link
+			if (!eventInfo["startD"])
+			{
+				window.location.href = "manage.php";
+			}
+			
+			
 			customlayout();
 			editable();
 			getVar();
@@ -55,7 +64,7 @@ $(function() {
 		}
 		
 	});
-
+	/*
 	$('#map').locationpicker({
         location: {latitude: 46.15242437752303, longitude: 2.7470703125},
         radius: 300,
@@ -69,6 +78,7 @@ $(function() {
             alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
         }
 	});	
+	*/
 });
 
 function drawFace()
@@ -807,7 +817,14 @@ function getDateDayInfo()
 		// get info about range of date
 	startDate = new Date(Date.parse($("#startDate").datepicker('getDate')));
 	endDate = new Date(Date.parse($("#endDate").datepicker('getDate')));
-	if (endDate < startDate) endDate = startDate;
+	if (endDate < startDate)
+	{
+		endDate = new Date(startDate.getTime());
+		
+		var myDate = new Date(endDate.getTime());
+		date = ('0'+ myDate.getDate()).slice(-2) + '-' + ('0'+ (Number(myDate.getMonth())+1)).slice(-2) + '-' + myDate.getFullYear() ;
+		$("#endDate").val(date);
+	}
 	
 	console.log(startDate);
 	console.log(endDate);
@@ -824,7 +841,11 @@ function getDateDayInfo()
 			startTime = Number(startTime);
 			endTime = Number(endTime);
 			
-			if (endTime < startTime) endTime = startTime;
+	if (endTime < startTime)
+	{
+		endTime = startTime;
+		$("#to").val(endTime);
+	}
 	console.log(displayDay);
 }
 
@@ -891,10 +912,14 @@ function showPeopleNumber()
 		console.log("X = ",x);
 		var cnt = tally[x].length;
 		var oldHTML = $("td[time = "+x+"]").html();
-		var idx = oldHTML.indexOf('<');
-		if (idx != -1) oldHTML = oldHTML.substring(0,idx-1);
-		var newHTML = oldHTML + " <span class='glyphicon glyphicon-user' aria-hidden='true'>"+cnt+"</span>";
-		$("td[time = "+x+"]").html(newHTML);
+		console.log("oldHTML = ",oldHTML);
+		if (oldHTML)
+		{
+			var idx = oldHTML.indexOf('<');
+			if (idx != -1) oldHTML = oldHTML.substring(0,idx-1);
+			var newHTML = oldHTML + " <span class='glyphicon glyphicon-user' aria-hidden='true'>"+cnt+"</span>";
+			$("td[time = "+x+"]").html(newHTML);
+		}
 	}
 	
 	// update for zero people

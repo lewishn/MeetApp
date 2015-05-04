@@ -50,7 +50,14 @@ function init()
 	var myDate = new Date();
 	var date = ('0'+ myDate.getDate()).slice(-2) + '-' + ('0'+ (Number(myDate.getMonth())+1)).slice(-2) + '-' + myDate.getFullYear() ;
 	$("#startDate").val(date);
+	
+	var myDateLater = Date.now();
+	myDateLater += 1000*60*60*24*2;
+	
+	myDate = new Date(myDateLater);
+	date = ('0'+ myDate.getDate()).slice(-2) + '-' + ('0'+ (Number(myDate.getMonth())+1)).slice(-2) + '-' + myDate.getFullYear() ;
 	$("#endDate").val(date);
+	
 	$("#from").val(8);
 	$("#to").val(12);
 	// init day of the week
@@ -91,7 +98,14 @@ function getDateDayInfo()
 		// get info about range of date
 	startDate = new Date(Date.parse($("#startDate").datepicker('getDate')));
 	endDate = new Date(Date.parse($("#endDate").datepicker('getDate')));
-	if (endDate < startDate) endDate = startDate;
+	if (endDate < startDate)
+	{
+		endDate = new Date(startDate.getTime());
+		
+		var myDate = new Date(endDate.getTime());
+		date = ('0'+ myDate.getDate()).slice(-2) + '-' + ('0'+ (Number(myDate.getMonth())+1)).slice(-2) + '-' + myDate.getFullYear() ;
+		$("#endDate").val(date);
+	}
 	
 	console.log(startDate);
 	console.log(endDate);
@@ -104,11 +118,15 @@ function getDateDayInfo()
 		displayDay[i] = $("#" + i)[0].checked;
 	}
 	startTime = $( "#from" ).val();
-			endTime = $("#to").val();
-			startTime = Number(startTime);
-			endTime = Number(endTime);
-			
-			if (endTime < startTime) endTime = startTime;
+	endTime = $("#to").val();
+	startTime = Number(startTime);
+	endTime = Number(endTime);
+	
+	if (endTime < startTime)
+	{
+		endTime = startTime;
+		$("#to").val(endTime);
+	}
 	console.log(displayDay);
 }
 
@@ -582,6 +600,7 @@ $(function() {
 	clickDailyButton();
 	
 	handleClickUpdate();
+	$("#update").trigger("click");
 });
 
 function green(r,c) {

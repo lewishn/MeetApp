@@ -38,7 +38,7 @@ $(document).ready(function()
 			})
 		}
 		else
-		 $("#error").html("Error: Name, Email, and Password cannot be empty");
+		 $("#error").html("Error: Info can't be empty");
 		return false;
 	});
 });
