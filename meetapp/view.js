@@ -15,13 +15,13 @@ var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
 var displayDay;
 
 $(function() {
-	console.log("YES?");
+	//console.log("YES?");
 	
 	
 	$(document).ajaxStop(function()
 	{
 		getUserInfo();
-		console.log("I CAN SAFELY START NOW!");
+		//console.log("I CAN SAFELY START NOW!");
 		
 		if (eventInfo["finalize"])
 		{
@@ -64,22 +64,64 @@ $(function() {
 		}
 		
 	});
-	/*
-	$('#map').locationpicker({
-        location: {latitude: 46.15242437752303, longitude: 2.7470703125},
-        radius: 300,
-        inputBinding: {
-            radiusInput: $('#map-radius'),
+
+	drawMap();	
+});
+
+function drawMap() {
+	// change lat/long here
+	var latitude = 40;
+	var longitude = -80;
+
+	if (!isAdmin) {
+		var myLatlng = new google.maps.LatLng(latitude, longitude);
+		var geocoder = new google.maps.Geocoder();
+		var s = "<label class='control-label'>Location:</label><span id='locdata'></span><div id='map-canvas' style='width: 100%; height:400px;''></div>";
+		$("#map-area").html(s);
+		geocoder.geocode({'latLng': myLatlng}, function(results) {
+			$("#locdata").text(" " + results[0].formatted_address);
+		});
+		var map;
+		function initialize() {
+			var mapOptions = {
+			  center: myLatlng,
+			  zoom: 8
+			};
+			map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+			
+			//=====Initialise Default Marker    
+			var marker = new google.maps.Marker({
+			    position: myLatlng,
+			    map: map,
+			    title: "Let's Meet Up Here"
+			});
+			
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+	} else {
+		var s = "<div class='bs-component'><div class='form-group'><label class='control-label'>Location:</label>" + 
+			"<input type='text' class='form-control' id='map-address'/></div></div>" +
+			"<div id='map' style='width: 100%; height: 400px;''></div>";
+
+		$("#map-area").html(s);
+		$('#map').locationpicker({
+        	location: {latitude:latitude, longitude:longitude},
+        	radius: 0,
+        	inputBinding: {
             locationNameInput: $('#map-address')
         },
         enableAutocomplete: true,
         onchanged: function (currentLocation, radius, isMarkerDropped) {
-            // Change Longitude and Latitude
-            alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+            // Changed Longitude and Latitude
+            var latitude = currentLocation.latitude;
+            var longitude = currentLocation.longitude;
+
+            //send to backend and update db here
+            
         }
-	});	
-	*/
-});
+		});
+	}
+}
 
 function drawFace()
 {
@@ -95,7 +137,7 @@ function drawFace()
 			var faceName = idToName[key];
 			var faceComment = eventComment[key];
 			
-			console.log(faceName,faceComment);
+			//console.log(faceName,faceComment);
 			
 			var append = "<div uid = "+key+" class = 'row showFace'>"+
 				"<div class = 'col-md-4'>"+
@@ -116,7 +158,7 @@ function drawFace()
 	$(".showFace").hover(
 		function() {
 			$(this).addClass('bg-primary');
-			console.log("HOVER ON",$(this).attr('uid'));
+			//console.log("HOVER ON",$(this).attr('uid'));
 			
 			// draw their tables
 			for (var key in eventResponse)
@@ -128,7 +170,7 @@ function drawFace()
 					for (var i = 0; i < temp.length; i++)
 					{
 						var id = temp[i];
-						console.log("ID = ",id);
+						//console.log("ID = ",id);
 						if ($("td[time = "+id+"]").hasClass("success"))
 						{
 							$("td[time = "+id+"]").addClass("info");
@@ -174,10 +216,10 @@ function getVar()
 {
 	startDate = eventInfo["startD"];
 	endDate = eventInfo["endD"];
-	console.log("Before : ",startDate,endDate);
+	//console.log("Before : ",startDate,endDate);
 	startDate = new Date(Number(startDate));
 	endDate = new Date(Number(endDate));
-	console.log("After : ",startDate,endDate);
+	//console.log("After : ",startDate,endDate);
 	
 	startTime = eventInfo["startT"];
 	endTime = eventInfo["endT"];
@@ -248,7 +290,7 @@ function initOption()
 	$("#to").val(endTime);
 	// init day of the week
 	
-	console.log("DISPLAY DAY");
+	//console.log("DISPLAY DAY");
 	for (var i = 0; i <= 6; i++)
 	{
 		
@@ -268,8 +310,8 @@ function getValidCell()
 		}
 		
 	}
-	console.log("VALID CELL");
-	console.log(valid);
+	//console.log("VALID CELL");
+	//console.log(valid);
 }
 
 function isValid(x)
@@ -290,8 +332,8 @@ function isValid(x)
 
 function repaint()
 {
-	console.log("REPAINT HOURLY");
-	console.log(highlight6);
+	//console.log("REPAINT HOURLY");
+	//console.log(highlight6);
 	for (var x in highlight6)
 	{
 		var temp = new Date(Number(x));
@@ -308,7 +350,7 @@ function clickHourlyButton()
 {
 	$("#sixty").click(function () 
 	{
-		console.log("MODE = SIXTY");
+		//console.log("MODE = SIXTY");
 		mode = "sixty";
 		$("#timepicker").show();
 		$("#daily").prop('checked',false);
@@ -319,12 +361,13 @@ function clickDailyButton()
 {
 	$("#daily").click(function ()
 	{
-		console.log("MODE = DAILY");
+		//console.log("MODE = DAILY");
 		mode = "daily";
 		$("#timepicker").hide();
 		$("#sixty").prop('checked',false);
 	});
 }
+
 function repaintDaily()
 {
 	for (var x in highlight)
@@ -339,14 +382,15 @@ function repaintDaily()
 		else delete highlight[x];	
 	}
 }
+
 function drawHourlyTable()
 {
 			
 			// get info about range of time
 			
-			console.log("DRAW GRID?");
-			console.log(startTime," -> ", endTime);
-			console.log(startDate," -> ", endDate);
+			//console.log("DRAW GRID?");
+			//console.log(startTime," -> ", endTime);
+			//console.log(startDate," -> ", endDate);
 			
 			startDateInfo = new Date(startDate);
 			endDateInfo = new Date(endDate);
@@ -368,7 +412,7 @@ function drawHourlyTable()
 					// valid day to display
 					col = 0;
 					row++;
-					console.log("ROW = " + row);
+					//console.log("ROW = " + row);
 					
 					// add new row
 					var tr = $("<tr></tr>");
@@ -379,13 +423,13 @@ function drawHourlyTable()
 					
 					col++;
 					var date = "<td r = '"+row+"' c = '"+col+"' class = 'warning date'>" + weekday[day] + " " + getday+"/"+getmonth+"</td>";
-					console.log(date);
+					//console.log(date);
 					
 					tr.append(date);
 					// add time
 					
 					var isRowEmpty = true;
-					console.log("DRAWING SPECIFIC TIME");
+					//console.log("DRAWING SPECIFIC TIME");
 					for (var i = startTime; i <= endTime; i++)
 					{
 							
@@ -404,7 +448,7 @@ function drawHourlyTable()
 							td = "<td class = 'invisible'>xxxxx</td>";
 						}
 						else td = "<td time = '"+uniqueID+"' r = '"+row+"' c = '"+col+"' class = 'time'>" + x +":00 </td>";
-						console.log(td);
+						//console.log(td);
 						tr.append(td);
 					}
 					
@@ -417,10 +461,10 @@ function drawHourlyTable()
 				startDate.setHours(0);
 			}
 			
-			console.log(row,col);
+			//console.log(row,col);
 			// after drawing table, try repainting some
 			repaint();
-			//console.log("FROM 1");
+			////console.log("FROM 1");
 			showPeopleNumber();
 			// done repainting
 			var down = false;
@@ -444,7 +488,7 @@ function drawHourlyTable()
 					highlight6[id] = { row: Number($(this).attr("r")), col: Number($(this).attr("c"))};
 					
 				}
-				//console.log("FROM 2");
+				////console.log("FROM 2");
 				showPeopleNumber();
 			});
 			
@@ -472,7 +516,7 @@ function drawHourlyTable()
 							
 						}
 					}
-					//console.log("FROM 3");
+					////console.log("FROM 3");
 					showPeopleNumber();
 				}
 				else
@@ -492,7 +536,7 @@ function drawHourlyTable()
 					
 					if (id in highlight6) ;
 					else $(this).removeClass("success");
-					//console.log("FROM 4");
+					////console.log("FROM 4");
 				}
 				
 			});
@@ -514,7 +558,7 @@ function drawHourlyTable()
 				}
 				
 				$("#highlight").val(text);
-				//console.log("FROM 5");
+				////console.log("FROM 5");
 				showPeopleNumber();
 			});
 			
@@ -556,7 +600,7 @@ function drawHourlyTable()
 						}
 					}
 				}
-				//console.log("FROM 6");
+				////console.log("FROM 6");
 				showPeopleNumber();
 			});
 }
@@ -566,8 +610,8 @@ function drawDailyTable()
 			startDateInfo = new Date(startDate);
 			endDateInfo = new Date(endDate);
 			
-			//console.log(startDate, startDate.getTime());
-			//console.log(startDateInfo, startDateInfo.getTime());
+			////console.log(startDate, startDate.getTime());
+			////console.log(startDateInfo, startDateInfo.getTime());
 			var row = 0,col = 0;
 			// clear table
 			$("#grid").html("");
@@ -591,11 +635,11 @@ function drawDailyTable()
 			row++; col = 0; startDay = 0;
 			while (startDate <= endDate)
 			{
-				//console.log(startDate,endDate, startDate == endDate);
+				////console.log(startDate,endDate, startDate == endDate);
 				col++;
-				console.log(startDate, startDate.getTime());
+				//console.log(startDate, startDate.getTime());
 				var curDate = startDate;
-				console.log(curDate, curDate.getTime());
+				//console.log(curDate, curDate.getTime());
 				var day = curDate.getDay();
 				
 				while (startDay < day)
@@ -609,7 +653,7 @@ function drawDailyTable()
 				var showDate = curDate.getDate();
 				var showMonth = monthArray[curDate.getMonth()];
 				var id = curDate.getTime();
-				console.log(curDate,id);
+				//console.log(curDate,id);
 				var td;
 				if (isValid(id))
 				{
@@ -657,7 +701,7 @@ function drawDailyTable()
 			}
 			
 			col = 7;
-			console.log("ROW = " + row + " COL = " + col);
+			//console.log("ROW = " + row + " COL = " + col);
 			repaintDaily();
 			var down = false;
 			showPeopleNumber();
@@ -812,7 +856,7 @@ function handleClickUpdate()
 
 function getDateDayInfo()
 {
-	console.log("Update button clicked");
+	//console.log("Update button clicked");
 		
 		// get info about range of date
 	startDate = new Date(Date.parse($("#startDate").datepicker('getDate')));
@@ -826,8 +870,8 @@ function getDateDayInfo()
 		$("#endDate").val(date);
 	}
 	
-	console.log(startDate);
-	console.log(endDate);
+	//console.log(startDate);
+	//console.log(endDate);
 	
 	// get info about day of the week
 	displayDay = [true, true, true, true, true, true, true];
@@ -846,15 +890,15 @@ function getDateDayInfo()
 		endTime = startTime;
 		$("#to").val(endTime);
 	}
-	console.log(displayDay);
+	//console.log(displayDay);
 }
 
 function showPeopleNumber()
 {
 	tally = {}; // reset tally
-	//console.log(eventResponse);
+	////console.log(eventResponse);
 	
-	console.log("IDTONAME = ",idToName);
+	//console.log("IDTONAME = ",idToName);
 	
 	for (var key in eventResponse)
 	{
@@ -875,12 +919,12 @@ function showPeopleNumber()
 		}
 	}
 	
-	console.log("TALLY FROM OTHER",tally);
+	//console.log("TALLY FROM OTHER",tally);
 	
 	// get MY response from highlight array
 	if (mode == "sixty")
 	{
-		console.log("MY TALLY",highlight6);
+		//console.log("MY TALLY",highlight6);
 		for (var x in highlight6)
 		{
 			if (tally[x]) tally[x].push(uname);
@@ -905,14 +949,14 @@ function showPeopleNumber()
 	}
 	
 	// DONE TALLY, NOW FIND AND SHOW PPL
-	console.log("AFTER TALLY ",tally);
+	//console.log("AFTER TALLY ",tally);
 	if (tally)
 	for (var x in tally)
 	{
-		console.log("X = ",x);
+		//console.log("X = ",x);
 		var cnt = tally[x].length;
 		var oldHTML = $("td[time = "+x+"]").html();
-		console.log("oldHTML = ",oldHTML);
+		//console.log("oldHTML = ",oldHTML);
 		if (oldHTML)
 		{
 			var idx = oldHTML.indexOf('<');
@@ -937,21 +981,21 @@ function showPeopleNumber()
 		}
 		else
 		{
-			console.log(tally[id]);
-			console.log(tally[id][0]);
+			//console.log(tally[id]);
+			//console.log(tally[id][0]);
 			var allNames = "";
 			for (var i = 0; i < tally[id].length; i++)
 			{
 				if (allNames != "") allNames += ", ";
 				allNames = allNames + " "+ tally[id][i];
 			}
-			console.log(id,allNames);
+			//console.log(id,allNames);
 			// attach a tooltip handler
 			$(this).attr("s","tooltip");
 			$(this).attr("title",allNames);
 			$(this).tooltip();
 		}
 	});
-	console.log(tally);
+	//console.log(tally);
 }
 
