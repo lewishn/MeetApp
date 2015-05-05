@@ -46,4 +46,20 @@ $(function()
 		
 		
 	});
+
+	$('#map').locationpicker({
+        radius: 0,
+        inputBinding: {
+            locationNameInput: $('#map-address')
+        },
+        enableAutocomplete: true,
+        onchanged: function (currentLocation, radius, isMarkerDropped) {
+            // Changed Longitude and Latitude
+            var latitude = currentLocation.latitude;
+            var longitude = currentLocation.longitude;
+
+            //send to backend and update db here
+            
+        }
+	});	
 });
