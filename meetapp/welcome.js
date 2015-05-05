@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function init()
 {
-	$("#form-signin").hide();
+	$("#form-signup").hide();
 }
 
 function joinbutton()
