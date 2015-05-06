@@ -76,6 +76,25 @@ function drawMap() {
 	if (!isAdmin) {
 		var myLatlng = new google.maps.LatLng(latitude, longitude);
 		var geocoder = new google.maps.Geocoder();
+		var s = "<div class='bs-component'><label class='control-label'>Location:<span id='locdata'></span></label></div><div id='map' style='width: 100%; height: 400px;''></div>";
+		geocoder.geocode({'latLng': myLatlng}, function(results) {
+			$("#locdata").text(" " + results[0].formatted_address);
+		});
+
+		$("#map-area").html(s);
+		$('#map').locationpicker({
+        	location: {latitude:latitude, longitude:longitude},
+        	radius: 0,
+        	enableAutocomplete: true,
+       		onchanged: function (currentLocation, radius, isMarkerDropped) {
+	            // Changed Longitude and Latitude
+	            var latitude = currentLocation.latitude;
+	            var longitude = currentLocation.longitude;
+      		}
+		});
+		/*
+		var myLatlng = new google.maps.LatLng(latitude, longitude);
+		var geocoder = new google.maps.Geocoder();
 		var s = "<label class='control-label'>Location:</label><span id='locdata'></span><div id='map-canvas' style='width: 100%; height:400px;''></div>";
 		$("#map-area").html(s);
 		geocoder.geocode({'latLng': myLatlng}, function(results) {
@@ -98,6 +117,7 @@ function drawMap() {
 			
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
+		*/
 	} else {
 		var s = "<div class='bs-component'><div class='form-group'><label class='control-label'>Location:</label>" + 
 			"<input type='text' class='form-control' id='map-address'/></div></div>" +
